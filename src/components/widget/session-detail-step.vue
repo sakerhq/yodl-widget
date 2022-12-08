@@ -28,8 +28,9 @@ export default {
       return formatSecondsToMinutes(this.form.price.duration)
     },
     dateString() {
-      return DateTime
-        .fromISO(`${this.form.date.year}-${this.form.date.month}-${this.form.date.day}`)
+      return DateTime.fromISO(
+        `${this.form.date.year}-${this.form.date.month}-${this.form.date.day}`
+      )
         .setLocale('en')
         .toLocaleString({ month: 'long', day: '2-digit' })
     }

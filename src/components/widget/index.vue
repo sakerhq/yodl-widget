@@ -78,6 +78,15 @@ export default {
 			window.YodlWidget.unmount()
 		},
 	},
+	mounted() {
+		const { options: { layout } } = window.YodlWidget
+
+		// NOTE: Only freeze body for specific layouts
+		switch (layout) {
+			case LAYOUT_TYPE.default:
+				document.body.classList.add('yodl-widget-freeze-body')
+		}
+	},
 	async created() {
 		// NOTE: Initialize constants for template
     this.DEFAULT_LAYOUT = LAYOUT_TYPE.default
@@ -96,7 +105,6 @@ export default {
     this.form.timeZone = DateTime.local().zoneName || 'Etc/GMT'
 
     this.loading = false
-		this.active = true
   }
 }
 </script>
@@ -119,7 +127,7 @@ export default {
 		<div 
 			v-else
 			@click.stop.prevent=""
-			class="yodl-widget absolute bottom-0 left-0 right-0 md:top-1/2 md:left-1/2 md:-translate-x-1/2 md:-translate-y-1/2 h-3/4 md:h-full md:max-h-[640px] w-full md:max-w-[420px] border border-black/10 rounded-lg bg-white shadow-lg"
+			class="yodl-widget absolute bottom-0 left-0 right-0 md:top-1/2 md:left-1/2 md:-translate-x-1/2 md:-translate-y-1/2 h-3/4 md:h-full md:max-h-[640px] w-full md:max-w-[420px] md:border border-black/10 rounded-tl-lg rounded-tr-lg md:rounded-lg bg-white shadow-lg"
 		>
 			<component 
 				:is="steps[currentStep]"
