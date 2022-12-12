@@ -2,7 +2,7 @@ import { createApp } from 'vue'
 import App from './App.vue'
 import '@/assets/index.css'
 import { LAYOUT_TYPE } from '@/utils/constants'
-import '@/store/widget'
+import { createPinia } from 'pinia'
 
 window.YodlWidget = {
   app: null,
@@ -25,7 +25,9 @@ window.YodlWidget = {
     const root = document.getElementById(this.options.id)
 
     if (root) {
+      const pinia = createPinia()
       this.app = createApp(App)
+      this.app.use(pinia)
       this.app.mount(root)
       document.body.classList.add('yodl-widget-freeze-body')
     } else {

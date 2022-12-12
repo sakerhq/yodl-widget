@@ -1,10 +1,10 @@
 # Yodl Widget
 
-**Widget integration [Yodl.to](https://yodl.to) creators and businesses**
+**Widget integration for [Yodl.to](https://yodl.to) creators and businesses**
 
 ## What is Yodl?
 
-Yodl is an application for creators and businesses to share their knowledge and skills with via video chats.
+Yodl is an application for creators and businesses to share their knowledge and skills via video chats.
 
 ## Demo
 

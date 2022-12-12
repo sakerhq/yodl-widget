@@ -6,19 +6,25 @@ const api = axios.create({ baseURL: import.meta.env.VITE_BASE_URL })
 
 api.defaults.headers.common['Accept'] = 'application/json'
 
-api.interceptors.request.use(function (config) {
+api.interceptors.request.use(
+  function (config) {
     config.params = keysToSnakeCase(config.params)
     config.data = keysToSnakeCase(config.data)
     return config
-}, function (error) {
+  },
+  function (error) {
     return Promise.reject(error)
-})
+  }
+)
 
-api.interceptors.response.use(function (response) {
+api.interceptors.response.use(
+  function (response) {
     response.data = keysToCamelCase(response.data)
-    return response;
-  }, function (error) {
+    return response
+  },
+  function (error) {
     return Promise.reject(error)
-  })
+  }
+)
 
 export default api
