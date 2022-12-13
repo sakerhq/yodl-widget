@@ -1,13 +1,15 @@
 <script>
-import { DateTime } from 'luxon'
-import UserAPI from '@/api/user.js'
-import WidgetAPI from '@/api/widget.js'
-import { AVAILABILITY_DAY_LIMIT, LAYOUT_TYPE } from '@/utils/constants'
+// NOTE: Load Stripe.js immediately per https://github.com/stripe/stripe-js docs
+import '@stripe/stripe-js'
+import CheckoutStep from '@/components/widget/checkout-step.vue'
 import ProductSelectionStep from '@/components/widget/product-selection-step.vue'
 import SessionDetailStep from '@/components/widget/session-detail-step.vue'
-import CheckoutStep from '@/components/widget/checkout-step.vue'
+import UserAPI from '@/api/user.js'
+import WidgetAPI from '@/api/widget.js'
 import { useWidgetStore } from '@/store/widget'
 import { mapState } from 'pinia'
+import { DateTime } from 'luxon'
+import { LAYOUT_TYPE } from '@/utils/constants'
 
 export default {
   name: 'YodlWidget',
@@ -38,22 +40,15 @@ export default {
     })
   },
   methods: {
-    // Events
-    onFormUpdate(payload) {
-      Object.assign(this.form, payload.data)
-
-      console.table('@on-form-update', this.form)
-    },
-    onNext(data) {
+    onNext() {
       if (this.currentStep < this.steps.length - 1) this.currentStep++
     },
-    onPrevious(data) {
+    onPrevious() {
       if (this.currentStep > 0) this.currentStep--
     },
     onUnmount() {
       window.YodlWidget.unmount()
     },
-    // End events
     async submit(data) {
       this.loading = true
 
@@ -75,21 +70,6 @@ export default {
       }
 
       this.loading = false
-    }
-  },
-  watch: {
-    duration: {
-      handler: function () {
-        // const startDate = DateTime.local().toISODate()
-        // // TODO: Make sure end date time is in time zone
-        // const endDate = DateTime.local().plus({ days: AVAILABILITY_DAY_LIMIT }).toISODate()
-        // this.store.availabilities({
-        //   priceId: this.duration.id,
-        //   startDate,
-        //   endDate,
-        //   timeZone: this.timeZone
-        // })
-      }
     }
   },
   mounted() {
@@ -130,22 +110,19 @@ export default {
 </script>
 
 <template>
-  <!-- layout - default -->
   <div v-if="layout === DEFAULT_LAYOUT" class="fixed inset-0 bg-black/25" @click.stop.prevent="onUnmount">
-    <!-- loading -->
     <div v-if="loading" class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-white">loading...</div>
-    <!-- wizard -->
     <div
       v-else
       @click.stop.prevent=""
-      class="yodl-widget absolute bottom-0 left-0 right-0 md:top-1/2 md:left-1/2 md:-translate-x-1/2 md:-translate-y-1/2 h-3/4 md:h-full md:max-h-[640px] w-full md:max-w-[420px] md:border border-black/10 rounded-tl-lg rounded-tr-lg md:rounded-lg bg-white shadow-lg"
+      class="yodl-widget absolute bottom-0 left-0 right-0 md:top-1/2 md:left-1/2 md:-translate-x-1/2 md:-translate-y-1/2 h-3/4 md:h-full md:max-h-[640px] w-full md:max-w-[420px] md:border border-black/10 rounded-tl-lg rounded-tr-lg md:rounded-lg bg-white shadow-lg overflow-hidden"
     >
       <component
         :is="steps[currentStep]"
         @on-form-update="onFormUpdate"
         @on-next="onNext"
         @on-previous="onPrevious"
-        @on-unmount="onUnmount"
+        @on-exit="onUnmount"
       />
     </div>
   </div>
@@ -156,5 +133,8 @@ export default {
 
 .yodl-widget {
   font-family: 'Manrope';
+}
+/deep/ .a-shadow {
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
 }
 </style>

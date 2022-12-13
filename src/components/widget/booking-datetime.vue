@@ -57,7 +57,7 @@ export default {
 </script>
 
 <template>
-  <div class="relative">
+  <div>
     <div class="relative cursor-pointer pl-3 pr-10 py-2" @click="openSelector">
       <div class="text-[10px] leading-4 font-bold uppercase tracking-wider mb-0.5">When</div>
       <div v-if="datetime.date && datetime.time" class="text-sm overflow-hidden whitespace-nowrap overflow-ellipsis">
@@ -68,10 +68,7 @@ export default {
     </div>
 
     <BaseCloseOverlay v-if="showSelector" class="z-40" @close-click="closeSelector" />
-    <div
-      v-if="showSelector"
-      class="a-shadow fixed lg:absolute top-0 lg:top-full bottom-0 lg:bottom-auto left-0 lg:left-auto right-0 lg:-right-14 w-full max-w-full lg:max-w-none lg:w-[750px] bg-white rounded-lg z-50"
-    >
+    <div v-if="showSelector" class="absolute inset-0 bg-white z-50 overflow-y-auto">
       <AvailabilitySelector
         :availabilities="availabilities"
         :datetime="datetime"

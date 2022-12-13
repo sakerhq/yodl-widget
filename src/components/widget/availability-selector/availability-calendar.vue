@@ -135,16 +135,28 @@ export default {
       <button
         type="button"
         class="w-7 h-7 rounded-md bg-wild-sand flex justify-center items-center"
-        :class="{'pointer-events-none opacity-40': disableBackArrow}"
+        :class="{ 'pointer-events-none opacity-40': disableBackArrow }"
         @click="previous"
       >
-        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clip-rule="evenodd" /></svg>
+        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+          <path
+            fill-rule="evenodd"
+            d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z"
+            clip-rule="evenodd"
+          />
+        </svg>
       </button>
 
       <div class="text-lg font-semibold">{{ periodTile }}</div>
 
       <button type="button" class="w-7 h-7 rounded-md bg-wild-sand flex justify-center items-center" @click="next">
-        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" /></svg>
+        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+          <path
+            fill-rule="evenodd"
+            d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
+            clip-rule="evenodd"
+          />
+        </svg>
       </button>
     </div>
 
@@ -154,7 +166,12 @@ export default {
       </div>
 
       <div v-for="(day, index) in days" :key="index" class="flex justify-center">
-        <div v-if="day" class="day w-6 h-6 flex justify-center items-center cursor-pointer" :class="dayStyleClasses(day)" @click="selectDay(day.date)">
+        <div
+          v-if="day"
+          class="day w-6 h-6 flex justify-center items-center cursor-pointer"
+          :class="dayStyleClasses(day)"
+          @click="selectDay(day.date)"
+        >
           <div class="text-sm leading-5 font-medium text-center">{{ day.number }}</div>
         </div>
       </div>
@@ -168,8 +185,7 @@ export default {
 
   &:hover {
     &::before {
-      @apply absolute -top-3 -left-3 w-12 h-12 border-2 border-black rounded-full z-[-1];
-
+      @apply absolute top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2 w-10 h-10 border-2 border-black rounded-full z-[-1];
       content: '';
     }
   }
@@ -177,49 +193,12 @@ export default {
 .day--disabled {
   @apply pointer-events-none opacity-30 line-through;
 }
-
 .day--selected {
   @apply text-white pointer-events-none;
 
   &::before {
-    @apply absolute -top-3 -left-3 w-12 h-12 bg-black rounded-full z-[-1];
-
+    @apply absolute top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2 w-10 h-10 bg-black rounded-full z-[-1];
     content: '';
   }
 }
-
-/* .day--current {
-  position: relative;
-}
-
-.day--current::after {
-  display: block;
-  width: 0.25rem;
-  height: 0.25rem;
-  border-radius: 9999px;
-  background-color: rgb(239, 68, 68);
-  position: absolute;
-  bottom: 0.125rem;
-  left: 50%;
-  margin-left: -0.125rem;
-  content: '';
-}
-.day--available {
-  border-color: rgb(239, 68, 68);
-  cursor: pointer;
-  pointer-events: auto;
-}
-
-.day--available:hover {
-  background-color: rgba(239, 68, 68, 0.1);
-} */
-
-/* .day--selected {
-  border-color: rgb(79, 70, 229);
-  background-color: rgb(79, 70, 229);
-} */
-
-/* .day--selected:hover {
-  background-color: rgb(55, 48, 163);
-} */
 </style>

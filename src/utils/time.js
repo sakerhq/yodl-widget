@@ -1,7 +1,6 @@
-export const formatSecondsToMinutes = (seconds) => {
-  return parseInt(seconds / 60) + ' min'
+export const formatSecondsToMinutes = (seconds, suffix) => {
+  return parseInt(seconds / 60) + ` ${suffix || 'min'}`
 }
-
 export const getLuxonTimeFormatByTimeFormat = (timeFormat) => {
   switch (timeFormat) {
     case '12h':
