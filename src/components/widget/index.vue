@@ -77,7 +77,7 @@ export default {
       options: { layout }
     } = window.YodlWidget
 
-    // Only freeze body for specific layouts
+    // NOTE: Only freeze body for specific layouts
     switch (layout) {
       case LAYOUT_TYPE.default:
         document.body.classList.add('yodl-widget-freeze-body')
@@ -117,13 +117,7 @@ export default {
       @click.stop.prevent=""
       class="yodl-widget absolute bottom-0 left-0 right-0 md:top-1/2 md:left-1/2 md:-translate-x-1/2 md:-translate-y-1/2 h-3/4 md:h-full md:max-h-[640px] w-full md:max-w-[420px] md:border border-black/10 rounded-tl-lg rounded-tr-lg md:rounded-lg bg-white shadow-lg overflow-hidden"
     >
-      <component
-        :is="steps[currentStep]"
-        @on-form-update="onFormUpdate"
-        @on-next="onNext"
-        @on-previous="onPrevious"
-        @on-exit="onUnmount"
-      />
+      <component :is="steps[currentStep]" @on-next="onNext" @on-previous="onPrevious" @on-exit="onUnmount" />
     </div>
   </div>
 </template>
@@ -134,7 +128,7 @@ export default {
 .yodl-widget {
   font-family: 'Manrope';
 }
-/deep/ .a-shadow {
+:deep().a-shadow {
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
 }
 </style>

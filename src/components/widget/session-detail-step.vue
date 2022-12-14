@@ -1,16 +1,16 @@
 <script>
-import CloseButton from '@/components/shared/close-button.vue'
-import { DateTime } from 'luxon'
 import BackButton from '@/components/shared/back-button.vue'
-import { formatSecondsToMinutes } from '@/utils/time'
-import { formatPenniesToDollars } from '@/utils/money'
+import CloseButton from '@/components/shared/close-button.vue'
 import BookingDatetime from '@/components/widget/booking-datetime.vue'
 import BookingDuration from '@/components/widget/booking-duration.vue'
 import BookingGuest from '@/components/widget/booking-guest.vue'
 import BookingProduct from '@/components/widget/booking-product.vue'
+import WizardNavigation from '@/components/widget/wizard-navigation.vue'
 import { mapState } from 'pinia'
 import { useWidgetStore } from '@/store/widget.js'
-import WizardNavigation from '@/components/widget/wizard-navigation.vue'
+import { DateTime } from 'luxon'
+import { formatSecondsToMinutes } from '@/utils/time'
+import { formatPenniesToDollars } from '@/utils/money'
 
 export default {
   name: 'SessionDetailStep',
@@ -38,13 +38,13 @@ export default {
     amountFormatted() {
       return formatPenniesToDollars(this.duration.amount)
     },
-    durationFormatted() {
-      return formatSecondsToMinutes(this.duration.duration, 'minutes')
-    },
     dateString() {
       return DateTime.fromISO(`${this.form.date.year}-${this.form.date.month}-${this.form.date.day}`)
         .setLocale('en')
         .toLocaleString({ month: 'long', day: '2-digit' })
+    },
+    durationFormatted() {
+      return formatSecondsToMinutes(this.duration.duration, 'minutes')
     },
     friendlyTimeZone() {
       return DateTime.local().setZone(this.timeZone).toFormat('ZZZZZ')
@@ -61,7 +61,6 @@ export default {
 <template>
   <div class="relative flex flex-col h-full w-full">
     <WizardNavigation class="p-4 pt-5" @on-exit="$emit('on-exit')" @on-previous="$emit('on-previous')" />
-
     <div class="flex-1 px-4 overflow-y-auto">
       <!-- selection -->
       <div class="mt-8 border border-black border-opacity-10 rounded-md">

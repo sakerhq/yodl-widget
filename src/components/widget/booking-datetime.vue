@@ -1,29 +1,32 @@
 <script>
-import { DateTime } from 'luxon'
 import AvailabilitySelector from '@/components/widget/availability-selector/index.vue'
+import ArrowDownIcon from '@/components/shared/arrow-down-icon.vue'
 import { mapState } from 'pinia'
 import { useWidgetStore } from '@/store/widget.js'
+import { DateTime } from 'luxon'
 
 export default {
   name: 'BookingDatetime',
   components: {
+    ArrowDownIcon,
     AvailabilitySelector
   },
   data() {
     return {
-      showSelector: false
+      show: false
     }
   },
   computed: {
     ...mapState(useWidgetStore, {
       availabilities: 'availabilities',
-      selectedDate: 'date',
-      selectedTime: 'time'
+      date: 'date',
+      time: 'time',
+      timeZone: 'timeZone'
     }),
     datetime() {
       return {
-        date: this.selectedDate,
-        time: this.selectedTime
+        date: this.date,
+        time: this.time
       }
     }
   },
@@ -37,17 +40,15 @@ export default {
 
       return DateTime.fromISO(date).toFormat(format)
     },
-    openSelector() {
-      this.showSelector = true
+    open() {
+      this.show = true
     },
-    closeSelector() {
-      this.showSelector = false
+    close() {
+      this.show = false
     },
-    selectDatetime(datetime) {
-      this.store.$patch({ date: datetime.date })
-      this.store.$patch({ time: datetime.time })
-
-      this.closeSelector()
+    select(datetime) {
+      this.store.$patch({ date: datetime.date, time: datetime.time })
+      this.close()
     }
   },
   created() {
@@ -58,7 +59,7 @@ export default {
 
 <template>
   <div>
-    <div class="relative cursor-pointer pl-3 pr-10 py-2" @click="openSelector">
+    <div class="relative cursor-pointer pl-3 pr-10 py-2" @click="open">
       <div class="text-[10px] leading-4 font-bold uppercase tracking-wider mb-0.5">When</div>
       <div v-if="datetime.date && datetime.time" class="text-sm overflow-hidden whitespace-nowrap overflow-ellipsis">
         {{ formatDate(datetime.date) }}, {{ datetime.time }}
@@ -67,14 +68,21 @@ export default {
       <ArrowDownIcon class="absolute top-1/2 -mt-2 right-4 w-4 h-4 text-black" />
     </div>
 
-    <BaseCloseOverlay v-if="showSelector" class="z-40" @close-click="closeSelector" />
-    <div v-if="showSelector" class="absolute inset-0 bg-white z-50 overflow-y-auto">
+    <button
+      v-if="show"
+      type="button"
+      class="fixed inset-0 h-full w-full bg-transparent focus:outline-none cursor-default z-10"
+      tabindex="-1"
+      @click.stop="close"
+    ></button>
+
+    <div v-if="show" class="absolute inset-0 bg-white z-50 overflow-y-auto">
       <AvailabilitySelector
         :availabilities="availabilities"
         :datetime="datetime"
         :modal="true"
-        :time-zone="currentTimeZone"
-        @on-confirm="selectDatetime"
+        :time-zone="timeZone"
+        @on-confirm="select"
       />
     </div>
   </div>

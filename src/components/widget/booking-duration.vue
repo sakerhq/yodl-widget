@@ -1,11 +1,15 @@
 <script>
+import ArrowDownIcon from '@/components/shared/arrow-down-icon.vue'
 import { useWidgetStore } from '@/store/widget.js'
 import { mapState } from 'pinia'
-import orderBy from 'lodash/orderBy'
 import { formatSecondsToMinutes } from '@/utils/time'
+import orderBy from 'lodash/orderBy'
 
 export default {
   name: 'BookingDuration',
+  components: {
+    ArrowDownIcon
+  },
   data() {
     return {
       showDropdown: false
@@ -31,7 +35,7 @@ export default {
       this.store.$patch({ duration: duration })
       this.close()
     },
-    formatDurationToMinutes(duration, suffix) {
+    formatDurationFromSecondsToMinutes(duration, suffix) {
       return formatSecondsToMinutes(duration, suffix)
     }
   },
@@ -46,7 +50,7 @@ export default {
     <div class="cursor-pointer relative pl-3 pr-10 py-2" @click="open">
       <div class="text-[10px] leading-4 font-bold uppercase tracking-wider mb-0.5">Duration</div>
       <div class="text-sm overflow-hidden whitespace-nowrap overflow-ellipsis">
-        {{ formatDurationToMinutes(duration.duration) }}
+        {{ formatDurationFromSecondsToMinutes(duration.duration) }}
       </div>
 
       <ArrowDownIcon class="absolute top-1/2 -mt-2 right-4 w-4 h-4 text-black" />
@@ -67,7 +71,7 @@ export default {
       <div
         v-for="duration in options"
         :key="duration.id"
-        class="px-4 py-2 mb-3 last:mb-0 rounded-lg text-sm font-medium leading-6"
+        class="px-3.5 py-1.5 mb-2 last:mb-0 rounded-lg text-sm font-medium leading-6"
         :class="[
           duration && duration.id === duration.id
             ? 'bg-black text-white pointer-events-none'
@@ -75,7 +79,7 @@ export default {
         ]"
         @click="select(duration)"
       >
-        {{ formatDurationToMinutes(duration.duration, 'minutes') }}
+        {{ formatDurationFromSecondsToMinutes(duration.duration, 'minutes') }}
       </div>
     </div>
   </div>

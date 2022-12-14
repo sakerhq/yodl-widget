@@ -1,0 +1,18 @@
+<script>
+export default {
+  name: 'ArrowDownIcon'
+}
+</script>
+
+<template>
+  <svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path
+      d="M3.5 6.5L8 11L12.5 6.5"
+      stroke="currentColor"
+      stroke-width="2"
+      stroke-miterlimit="10"
+      stroke-linecap="square"
+      stroke-linejoin="round"
+    />
+  </svg>
+</template>
