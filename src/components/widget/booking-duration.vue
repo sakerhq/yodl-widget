@@ -18,7 +18,7 @@ export default {
   computed: {
     ...mapState(useWidgetStore, {
       product: 'product',
-      duration: 'duration'
+      selection: 'duration'
     }),
     options() {
       return orderBy(this.product.prices, 'duration', 'asc')
@@ -50,9 +50,8 @@ export default {
     <div class="cursor-pointer relative pl-3 pr-10 py-2" @click="open">
       <div class="text-[10px] leading-4 font-bold uppercase tracking-wider mb-0.5">Duration</div>
       <div class="text-sm overflow-hidden whitespace-nowrap overflow-ellipsis">
-        {{ formatDurationFromSecondsToMinutes(duration.duration) }}
+        {{ formatDurationFromSecondsToMinutes(selection.duration) }}
       </div>
-
       <ArrowDownIcon class="absolute top-1/2 -mt-2 right-4 w-4 h-4 text-black" />
     </div>
 
@@ -73,7 +72,7 @@ export default {
         :key="duration.id"
         class="px-3.5 py-1.5 mb-2 last:mb-0 rounded-lg text-sm font-medium leading-6"
         :class="[
-          duration && duration.id === duration.id
+          selection && selection.id === duration.id
             ? 'bg-black text-white pointer-events-none'
             : 'hover:bg-[#F2F2F2] cursor-pointer'
         ]"

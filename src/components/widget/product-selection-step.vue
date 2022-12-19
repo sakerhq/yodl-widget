@@ -58,14 +58,14 @@ export default {
 <template>
   <div class="flex flex-col h-full w-full">
     <WizardNavigation
-      class="p-4 pt-5"
+      class="p-4 pt-5 pb-0"
       :logo="false"
       :previous="false"
       @on-exit="$emit('on-exit')"
       @on-previous="$emit('on-previous')"
     />
     <div class="flex-shrink-0">
-      <div v-if="user" class="py-8 px-6">
+      <div v-if="user" class="pt-4 pb-8 px-6">
         <BaseAvatar :avatar="user.avatar" :title="user.name" size="80px" class="mx-auto mb-2" />
         <div class="font-medium text-lg whitespace-nowrap overflow-hidden text-ellipsis text-center">
           {{ user.name }}

@@ -2,8 +2,10 @@
 // NOTE: Load Stripe.js immediately per https://github.com/stripe/stripe-js docs
 import '@stripe/stripe-js'
 import CheckoutStep from '@/components/widget/checkout-step.vue'
+import ConfirmationStep from '@/components/widget/confirmation-step.vue'
 import ProductSelectionStep from '@/components/widget/product-selection-step.vue'
 import SessionDetailStep from '@/components/widget/session-detail-step.vue'
+
 import UserAPI from '@/api/user.js'
 import WidgetAPI from '@/api/widget.js'
 import { useWidgetStore } from '@/store/widget'
@@ -15,6 +17,7 @@ export default {
   name: 'YodlWidget',
   components: {
     CheckoutStep,
+    ConfirmationStep,
     ProductSelectionStep,
     SessionDetailStep
   },
@@ -29,7 +32,7 @@ export default {
         timeZone: null
       },
       loading: false,
-      steps: ['product-selection-step', 'session-detail-step', 'checkout-step']
+      steps: ['product-selection-step', 'session-detail-step', 'checkout-step', 'confirmation-step']
     }
   },
   computed: {
