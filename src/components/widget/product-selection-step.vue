@@ -56,24 +56,24 @@ export default {
 </script>
 
 <template>
-  <div class="flex flex-col h-full w-full">
+  <div class="yw-flex yw-flex-col yw-h-full yw-w-full">
     <WizardNavigation
-      class="p-4 pt-5 pb-0"
+      class="yw-p-4 yw-pt-5 yw-pb-0"
       :logo="false"
       :previous="false"
       @on-exit="$emit('on-exit')"
       @on-previous="$emit('on-previous')"
     />
-    <div class="flex-shrink-0">
-      <div v-if="user" class="pt-4 pb-8 px-6">
-        <BaseAvatar :avatar="user.avatar" :title="user.name" size="80px" class="mx-auto mb-2" />
-        <div class="font-medium text-lg whitespace-nowrap overflow-hidden text-ellipsis text-center">
+    <div class="yw-flex-shrink-0">
+      <div v-if="user" class="yw-pt-4 yw-pb-8 px-6">
+        <BaseAvatar :avatar="user.avatar" :title="user.name" size="80px" class="yw-mx-auto yw-mb-2" />
+        <div class="yw-font-medium yw-text-lg yw-whitespace-nowrap yw-overflow-hidden yw-text-ellipsis yw-text-center">
           {{ user.name }}
         </div>
       </div>
     </div>
-    <div class="flex-1 min-h-0 pb-4 overflow-y-auto">
-      <div class="px-4 space-y-3">
+    <div class="yw-flex-1 yw-min-h-0 yw-pb-4 yw-overflow-y-auto">
+      <div class="yw-px-4 yw-space-y-3">
         <ProductCard
           v-for="product in products"
           :key="product.id"
@@ -83,18 +83,18 @@ export default {
         />
       </div>
     </div>
-    <div class="flex-shrink-0">
-      <div class="h-px bg-[#ebebeb] mb-3"></div>
-      <div class="px-4 mb-5">
-        <div class="leading-6 text-[12px] text-center px-2 mb-4">
-          <span class="block font-light text-[#696969]"> By selecting “continue” you agree to our </span>
-          <a target="blank" href="https://yodl.to/learn/privacy-policy" class="underline"> Privacy Policy</a>
+    <div class="yw-flex-shrink-0">
+      <div class="yw-h-px yw-bg-[#ebebeb] yw-mb-3"></div>
+      <div class="yw-px-4 yw-mb-5">
+        <div class="yw-leading-6 yw-text-[12px] yw-text-center yw-px-2 yw-mb-4">
+          <span class="yw-block yw-font-light tyw-ext-[#696969]"> By selecting “continue” you agree to our </span>
+          <a target="blank" href="https://yodl.to/learn/privacy-policy" class="yw-underline"> Privacy Policy</a>
           and
-          <a target="blank" href="https://yodl.to/learn/terms-of-service" class="underline"> Terms of Service</a>.
+          <a target="blank" href="https://yodl.to/learn/terms-of-service" class="yw-underline"> Terms of Service</a>.
         </div>
         <button
           type="button"
-          class="w-full bg-[#FF385C] text-white rounded-lg px-4 py-3 text-sm leading-6 font-semibold text-center disabled:pointer-events-none disabled:opacity-50"
+          class="yw-w-full yw-bg-[#FF385C] yw-text-white yw-rounded-lg yw-px-4 yw-py-3 yw-text-sm yw-leading-6 yw-font-semibold yw-text-center disabled:yw-pointer-events-none disabled:yw-opacity-50"
           @click="$emit('on-next')"
         >
           Set date and time

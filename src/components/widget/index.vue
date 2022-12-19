@@ -113,12 +113,17 @@ export default {
 </script>
 
 <template>
-  <div v-if="layout === DEFAULT_LAYOUT" class="fixed inset-0 bg-black/25" @click.stop.prevent="onUnmount">
-    <div v-if="loading" class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-white">loading...</div>
+  <div v-if="layout === DEFAULT_LAYOUT" class="yw-fixed yw-inset-0 yw-bg-black/25" @click.stop.prevent="onUnmount">
+    <div
+      v-if="loading"
+      class="yw-absolute yw-top-1/2 yw-left-1/2 -yw-translate-x-1/2 -yw-translate-y-1/2 yw-text-white"
+    >
+      loading...
+    </div>
     <div
       v-else
       @click.stop.prevent=""
-      class="yodl-widget absolute bottom-0 left-0 right-0 md:top-1/2 md:left-1/2 md:-translate-x-1/2 md:-translate-y-1/2 h-3/4 md:h-full md:max-h-[640px] w-full md:max-w-[420px] md:border border-black/10 rounded-tl-lg rounded-tr-lg md:rounded-lg bg-white shadow-lg overflow-hidden"
+      class="yodl-widget yw-absolute yw-bottom-0 yw-left-0 yw-right-0 md:yw-top-1/2 md:yw-left-1/2 md:-yw-translate-x-1/2 md:-yw-translate-y-1/2 yw-h-3/4 md:yw-h-full md:yw-max-h-[640px] yw-w-full md:yw-max-w-[420px] md:yw-border yw-border-black/10 yw-rounded-tl-lg yw-rounded-tr-lg md:yw-rounded-lg yw-bg-white yw-shadow-lg"
     >
       <component :is="steps[currentStep]" @on-next="onNext" @on-previous="onPrevious" @on-exit="onUnmount" />
     </div>

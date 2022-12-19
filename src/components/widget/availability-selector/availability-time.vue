@@ -19,12 +19,14 @@ export default {
 </script>
 
 <template>
-  <div class="space-y-1.5 overflow-y-auto">
+  <div class="yw-space-y-1.5 yw-overflow-y-auto">
     <div
       v-for="time in availableTimeSlots"
       :key="time.startTime"
-      class="px-3 py-1.5 leading-6 text-sm font-medium rounded-lg"
-      :class="[time.startTime === selectedTime ? 'bg-black text-white' : 'hover:bg-[#F2F2F2] cursor-pointer']"
+      class="yw-px-3 yw-py-1.5 yw-leading-6 yw-text-sm yw-font-medium yw-rounded-lg"
+      :class="[
+        time.startTime === selectedTime ? 'yw-bg-black yw-text-white' : 'hover:yw-bg-[#F2F2F2] yw-cursor-pointer'
+      ]"
       @click="select(time.startTime)"
     >
       {{ time.startTime }}

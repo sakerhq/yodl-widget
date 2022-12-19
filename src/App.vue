@@ -9,5 +9,5 @@ export default {
 </script>
 
 <template>
-  <YodlWidget />
+  <YodlWidget class="yodl-widget" />
 </template>

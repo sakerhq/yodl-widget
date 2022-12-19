@@ -11,7 +11,7 @@ export default {
 
 <template>
   <button
-    class="w-7 h-7 hover:text-[#FF385C] transition-colors duration-300 cursor-pointer"
+    class="yw-w-7 yw-h-7 hover:yw-text-[#FF385C] yw-transition-colors yw-duration-300 yw-cursor-pointer"
     @click.stop.prevent="previous"
   >
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-label="Back" role="img">

@@ -1,6 +1,6 @@
 <script>
-import sortBy from 'lodash/sortBy'
 import { formatPenniesToDollars } from '@/utils/money'
+import { formatSecondsToMinutes } from '@/utils/time'
 
 export default {
   props: {
@@ -9,23 +9,54 @@ export default {
   },
   computed: {
     lowestPrice() {
-      return formatPenniesToDollars(sortBy(this.product.prices, ['amount'])[0].amount)
+      const sortBy = (collection, prop) => {
+        // NOTE: Bubble sort
+        let last = collection.length - 1
+        let sorted = false
+
+        while (!sorted) {
+          sorted = true
+          for (let i = 0; i < last; i++) {
+            if (collection[i][prop] > collection[i + 1][prop]) {
+              const temp = collection[i]
+              collection[i] = collection[i + 1]
+              collection[i + 1] = temp
+
+              sorted = false
+            }
+          }
+          last -= 1
+        }
+
+        return collection
+      }
+
+      return sortBy(this.product.prices, 'amount')[0]
     }
+  },
+  created() {
+    this.formatPenniesToDollars = formatPenniesToDollars
+    this.formatSecondsToMinutes = formatSecondsToMinutes
   }
 }
 </script>
 
 <template>
-  <div class="relative px-4 py-3 rounded-xl cursor-pointer">
+  <div class="yw-relative yw-px-4 yw-py-3 yw-rounded-xl yw-cursor-pointer">
     <div
       :class="[
-        selected ? 'border-2 border-black' : 'border border-black border-opacity-10',
-        'absolute -inset-0 rounded-lg'
+        selected ? 'yw-border-2 yw-border-black' : 'yw-border yw-border-black yw-border-opacity-10',
+        'yw-absolute -yw-inset-0 yw-rounded-lg'
       ]"
     ></div>
-    <div class="text-sm font-semibold mb-1">{{ product.name }}</div>
-    <div class="text-xs">From: <span class="text-[#FF385C]">$60.00</span> / 15 minutes</div>
-    <div class="h-px my-2 bg-black bg-opacity-10"></div>
-    <div class="mb-1 text-xs font-light">{{ product.description }}</div>
+    <div class="yw-text-sm yw-font-semibold yw-mb-1">{{ product.name }}</div>
+    <div class="yw-text-xs">
+      From:
+      <span class="yw-text-[#FF385C]">{{ formatPenniesToDollars(lowestPrice.amount) }}</span>
+      /
+      <span>{{ formatSecondsToMinutes(lowestPrice.duration, 'minutes') }}</span>
+    </div>
+    <div class="yw-h-px yw-my-2 yw-bg-black yw-bg-opacity-10"></div>
+    <div class="yw-mb-1 yw-text-xs yw-font-light">{{ product.description }}</div>
   </div>
 </template>

@@ -59,24 +59,27 @@ export default {
 
 <template>
   <div>
-    <div class="relative cursor-pointer pl-3 pr-10 py-2" @click="open">
-      <div class="text-[10px] leading-4 font-bold uppercase tracking-wider mb-0.5">When</div>
-      <div v-if="datetime.date && datetime.time" class="text-sm overflow-hidden whitespace-nowrap overflow-ellipsis">
+    <div class="yw-relative yw-cursor-pointer yw-pl-3 yw-pr-10 yw-py-2" @click="open">
+      <div class="yw-text-[10px] yw-leading-4 yw-font-bold yw-uppercase yw-tracking-wider yw-mb-0.5">When</div>
+      <div
+        v-if="datetime.date && datetime.time"
+        class="yw-text-sm yw-overflow-hidden yw-whitespace-nowrap yw-overflow-ellipsis"
+      >
         {{ formatDate(datetime.date) }}, {{ datetime.time }}
       </div>
-      <div v-else class="text-sm text-gray-400">Select</div>
-      <ArrowDownIcon class="absolute top-1/2 -mt-2 right-4 w-4 h-4 text-black" />
+      <div v-else class="yw-text-sm yw-text-gray-400">Select</div>
+      <ArrowDownIcon class="yw-absolute yw-top-1/2 -yw-mt-2 yw-right-4 yw-w-4 yw-h-4 yw-text-black" />
     </div>
 
     <button
       v-if="show"
       type="button"
-      class="fixed inset-0 h-full w-full bg-transparent focus:outline-none cursor-default z-10"
+      class="yw-fixed yw-inset-0 yw-h-full yw-w-full yw-bg-transparent focus:yw-outline-none yw-cursor-default yw-z-10"
       tabindex="-1"
       @click.stop="close"
     ></button>
 
-    <div v-if="show" class="absolute inset-0 bg-white z-50 overflow-y-auto">
+    <div v-if="show" class="yw-absolute yw-inset-0 yw-bg-white yw-z-50 yw-overflow-y-auto">
       <AvailabilitySelector
         :availabilities="availabilities"
         :datetime="datetime"

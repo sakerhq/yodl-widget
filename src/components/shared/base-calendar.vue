@@ -138,36 +138,48 @@ export default {
 
 <template>
   <div>
-    <div class="flex items-center justify-between mb-4">
+    <div class="yw-flex yw-items-center yw-justify-between yw-mb-4">
       <button
         type="button"
-        class="w-7 h-7 rounded-md bg-wild-sand flex justify-center items-center"
-        :class="{'pointer-events-none opacity-40': disableBackArrow}"
+        class="yw-w-7 yw-h-7 yw-rounded-md yw-flex yw-justify-center yw-items-center"
+        :class="{ 'yw-pointer-events-none yw-opacity-40': disableBackArrow }"
         @click="previous"
       >
-        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M7.707 14.707a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l2.293 2.293a1 1 0 010 1.414z" clip-rule="evenodd"></path></svg>
+        <svg class="yw-w-4 yw-h-4" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+          <path
+            fill-rule="evenodd"
+            d="M7.707 14.707a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l2.293 2.293a1 1 0 010 1.414z"
+            clip-rule="evenodd"
+          ></path>
+        </svg>
       </button>
 
-      <div class="text-sm">{{ month }}</div>
+      <div class="yw-text-sm">{{ month }}</div>
 
-      <button type="button" class="w-7 h-7 rounded-md bg-wild-sand flex justify-center items-center" @click="next">
-        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+      <button type="button" class="yw-w-7 yw-h-7 yw-rounded-md yw-flex yw-justify-center yw-items-center" @click="next">
+        <svg class="yw-w-4 yw-h-4" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+          <path
+            fill-rule="evenodd"
+            d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z"
+            clip-rule="evenodd"
+          ></path>
+        </svg>
       </button>
     </div>
 
-    <div class="relative grid grid-cols-7 gap-2">
-      <div v-for="weekday in weekdays" :key="weekday" class="mb-1.5">
-        <div class="text-xs leading-4 font-semibold text-mortar text-center">{{ weekday }}</div>
+    <div class="yw-relative yw-grid yw-grid-cols-7 yw-gap-2">
+      <div v-for="weekday in weekdays" :key="weekday" class="yw-mb-1.5">
+        <div class="yw-text-xs yw-leading-4 yw-font-semibold yw-text-mortar yw-text-center">{{ weekday }}</div>
       </div>
 
       <div
         v-for="(day, index) in days"
         :key="index"
-        class="w-8 h-8 flex justify-center items-center mx-auto border border-transparent rounded-md pointer-events-none"
+        class="yw-w-8 yw-h-8 yw-flex yw-justify-center yw-items-center yw-mx-auto yw-border yw-border-transparent yw-rounded-md yw-pointer-events-none"
         :class="dayStyleClasses(day)"
         @click="selectDay(day.date)"
       >
-        <div class="text-sm leading-4 text-center">{{ day.number }}</div>
+        <div class="yw-text-sm yw-leading-4 yw-text-center">{{ day.number }}</div>
       </div>
     </div>
   </div>
@@ -178,11 +190,9 @@ export default {
   pointer-events: none;
   color: rgb(209, 213, 219);
 }
-
 .day--current {
   position: relative;
 }
-
 .day--current::after {
   display: block;
   width: 0.25rem;
@@ -200,17 +210,7 @@ export default {
   cursor: pointer;
   pointer-events: auto;
 }
-
 .day--available:hover {
   background-color: rgba(239, 68, 68, 0.1);
 }
-
-/* .day--selected {
-  border-color: rgb(79, 70, 229);
-  background-color: rgb(79, 70, 229);
-} */
-
-/* .day--selected:hover {
-  background-color: rgb(55, 48, 163);
-} */
 </style>

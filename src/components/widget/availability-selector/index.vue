@@ -63,30 +63,34 @@ export default {
 </script>
 
 <template>
-  <div class="flex flex-col h-full">
+  <div class="yw-flex yw-flex-col yw-h-full">
     <AvailabilityCalendar
       :selected-date="selectedDate"
       :availabilities="availabilities"
       :time-zone="timeZone"
-      class="flex-shrink-0 p-5"
+      class="yw-flex-shrink-0 yw-p-5"
       @on-select="selectDate"
     />
 
-    <div class="flex-1 flex flex-col h-0 max-h-full">
-      <div class="relative h-64 lg:h-full flex flex-col p-5 pb-0 border-t overflow-auto">
-        <p class="flex-shrink-0 pb-2 px-2 font-semibold">Select Time</p>
+    <div class="yw-flex-1 yw-flex yw-flex-col yw-h-0 yw-max-h-full">
+      <div class="yw-relative yw-h-64 lg:yw-h-full yw-flex yw-flex-col yw-p-5 yw-pb-0 yw-border-t yw-overflow-auto">
+        <p class="yw-flex-shrink-0 yw-pb-2 yw-px-2 yw-font-semibold">Select Time</p>
         <AvailabilityTime
           :selected-time="selectedTime"
           :time-slots="availableTimeSlots"
-          class="flex-1 p-0 pb-3 overflow-auto"
+          class="yw-flex-1 yw-p-0 yw-pb-3 yw-overflow-auto"
           @on-select="selectTime"
         />
       </div>
     </div>
 
-    <div class="flex-shrink-0 flex justify-between" :class="{ 'p-5': modal }">
-      <button type="button" class="leading-6 text-sm font-semibold underline" @click="clear">cancel</button>
-      <button type="button" class="ml-8 px-5 py-2 rounded-lg bg-black text-white leading-6" @click="apply">
+    <div class="yw-flex-shrink-0 yw-flex yw-justify-between" :class="{ 'yw-p-5': modal }">
+      <button type="button" class="yw-leading-6 yw-text-sm yw-font-semibold yw-underline" @click="clear">cancel</button>
+      <button
+        type="button"
+        class="yw-ml-8 yw-px-5 yw-py-2 yw-rounded-lg yw-bg-black yw-text-white yw-leading-6"
+        @click="apply"
+      >
         Apply
       </button>
     </div>

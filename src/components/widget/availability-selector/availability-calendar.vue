@@ -181,23 +181,23 @@ export default {
 
 <style lang="scss" scoped>
 .day {
-  @apply relative z-10;
+  @apply yw-relative yw-z-10;
 
   &:hover {
     &::before {
-      @apply absolute top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2 w-10 h-10 border-2 border-black rounded-full z-[-1];
+      @apply yw-absolute yw-top-1/2 -yw-translate-y-1/2 yw-left-1/2 -yw-translate-x-1/2 yw-w-10 yw-h-10 yw-border-2 yw-border-black yw-rounded-full yw-z-[-1];
       content: '';
     }
   }
 }
 .day--disabled {
-  @apply pointer-events-none opacity-30 line-through;
+  @apply yw-pointer-events-none yw-opacity-30 yw-line-through;
 }
 .day--selected {
-  @apply text-white pointer-events-none;
+  @apply yw-text-white yw-pointer-events-none;
 
   &::before {
-    @apply absolute top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2 w-10 h-10 bg-black rounded-full z-[-1];
+    @apply yw-absolute yw-top-1/2 -yw-translate-y-1/2 yw-left-1/2 -yw-translate-x-1/2 yw-w-10 yw-h-10 yw-bg-black yw-rounded-full yw-z-[-1];
     content: '';
   }
 }

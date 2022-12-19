@@ -4,13 +4,15 @@
 @tailwind components;
 @tailwind utilities;
 
-body {
-  font-family: 'Raleway', sans-serif;
-  font-size: 16px;
-  line-height: 1.15;
+@layer base {
+  .yodl-widget {
+    * {
+      @apply yw-box-border;
+    }
+  }
 }
 
-.yodl-widget-freeze-body {
+.yw-freeze-body {
   overflow: hidden;
   width: 100vw;
 }

@@ -65,20 +65,20 @@ export default {
 </script>
 
 <template>
-  <div :style="`width: ${size}; height: ${size}; min-width: ${size}; min-height: ${size};`" class="relative rounded-full overflow-hidden">
+  <div
+    :style="`width: ${size}; height: ${size}; min-width: ${size}; min-height: ${size};`"
+    class="yw-relative yw-rounded-full yw-overflow-hidden"
+  >
     <div v-if="avatar && avatar.length">
-      <img :src="avatar" class="block object-cover" />
+      <img :src="avatar" class="yw-block yw-object-cover" />
     </div>
 
     <div
       v-else
       :style="`background-color: ${backgroundColor}`"
-      class="w-full h-full flex flex-col items-center justify-center"
+      class="yw-w-full yw-h-full yw-flex yw-flex-col yw-items-center yw-justify-center"
     >
-      <div
-        class="text-white font-semibold uppercase"
-        :style="`font-size: ${fontSize}`"
-      >
+      <div class="yw-text-white yw-font-semibold yw-uppercase" :style="`font-size: ${fontSize}`">
         {{ titleTransformed }}
       </div>
     </div>

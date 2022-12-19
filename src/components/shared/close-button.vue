@@ -10,14 +10,11 @@ export default {
 </script>
 
 <template>
-  <button class="w-7 h-7 cursor-pointer" @click="close">
-    <svg
-      class="inline w-7 h-7 hover:text-[#FF385C] transition-colors duration-300 cursor-pointer"
-      xmlns="http://www.w3.org/2000/svg"
-      viewBox="0 0 24 24"
-      aria-label="Exit"
-      role="img"
-    >
+  <button
+    class="yw-w-7 yw-h-7 hover:yw-text-[#FF385C] yw-transition-colors yw-duration-300 yw-cursor-pointer yw-border-none yw-box-border yw-p-0"
+    @click="close"
+  >
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-label="Exit" role="img">
       <path fill="none" d="M0 0h24v24H0z"></path>
       <path
         fill="currentColor"
